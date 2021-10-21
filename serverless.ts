@@ -1,25 +1,25 @@
-import type { AWS } from '@serverless/typescript';
+import type { AWS } from "@serverless/typescript";
 
-import hello from '@functions/hello';
+import hello from "@functions/hello";
 
 const serverlessConfiguration: AWS = {
-  service: 'serverless-sample-with-auth',
-  frameworkVersion: '2',
+  service: "serverless-sample-with-auth",
+  frameworkVersion: "2",
   custom: {
     esbuild: {
       bundle: true,
       minify: false,
       sourcemap: true,
-      exclude: ['aws-sdk'],
-      target: 'node14',
-      define: { 'require.resolve': undefined },
-      platform: 'node',
+      exclude: ["aws-sdk"],
+      target: "node14",
+      define: { "require.resolve": undefined },
+      platform: "node",
     },
   },
-  plugins: ['serverless-esbuild'],
+  plugins: ["serverless-esbuild"],
   provider: {
-    name: 'aws',
-    runtime: 'nodejs14.x',
+    name: "aws",
+    runtime: "nodejs14.x",
     region: "ap-northeast-1",
     profile: "sls-user",
     apiGateway: {
@@ -27,10 +27,10 @@ const serverlessConfiguration: AWS = {
       shouldStartNameWithService: true,
     },
     environment: {
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+      NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
     },
-    lambdaHashingVersion: '20201221',
+    lambdaHashingVersion: "20201221",
   },
   // import the function via paths
   functions: { hello },
